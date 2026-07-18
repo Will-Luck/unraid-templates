@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>
+Templates for self-hosted media tools published under [Will-Luck](https://github.com/Will-Luck).
+
+**iplayer-arr** -- BBC iPlayer download manager for Sonarr. Acts as both a Newznab indexer and a SABnzbd-compatible download client, so Sonarr can discover and grab BBC iPlayer content with no Perl/get_iplayer dependency. Includes an optional built-in WireGuard VPN client for use outside the UK.
+
+Support: post in the Unraid forum thread linked below, or file an issue on the app's GitHub repository.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/Will-Luck/iplayer-arr/main/frontend/public/android-chrome-512x512.png</Icon>
+  <WebPage>https://github.com/Will-Luck/unraid-templates</WebPage>
+  <Forum>https://forums.unraid.net/topic/198386-support-will-luck-iplayer-arr/</Forum>
+</CommunityApplications>

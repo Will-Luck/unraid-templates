@@ -14,8 +14,11 @@
   <ReadMe>https://github.com/Will-Luck/iplayer-arr#readme</ReadMe>
   <Overview>BBC iPlayer Newznab indexer and SABnzbd-compatible download client for Sonarr. Lets Sonarr discover and grab BBC iPlayer content with no separate Newznab indexer required and no Perl/get-iplayer dependency. Calls the BBC iBL API directly and remuxes HLS to MP4 with ffmpeg.&#xD;&#xD;Includes an optional WireGuard VPN client (built on the hotio base image) for use outside the UK. By default the VPN is disabled. Set VPN_ENABLED=true and configure the VPN settings in the advanced section if you are running from outside the UK -- BBC iPlayer requires a UK IP address.&#xD;&#xD;After installing, open the WebUI and follow the Setup Wizard to connect Sonarr.</Overview>
   <Category>Downloaders: MediaApp:Video</Category>
-  <WebUI>http://[IP]:[PORT:8191]</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/Will-Luck/unraid-templates/main/iplayer-arr.xml</TemplateURL>
+  <ExtraSearchTerms>bbc iplayer sonarr newznab sabnzbd</ExtraSearchTerms>
+  <Requires>A UK IP address (or the built-in WireGuard VPN configured with a UK endpoint) and a valid UK TV Licence.</Requires>
+  <License>GPL-3.0</License>
+  <WebUI>http://[IP]:[PORT:62001]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Will-Luck/unraid-templates/main/templates/iplayer-arr.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Will-Luck/iplayer-arr/main/frontend/public/android-chrome-512x512.png</Icon>
   <ExtraParams>--cap-add=NET_ADMIN --sysctl="net.ipv4.conf.all.src_valid_mark=1"</ExtraParams>
   <PostArgs/>
@@ -24,7 +27,7 @@
   <DonateText/>
   <DonateLink/>
   <Description>BBC iPlayer Newznab indexer and SABnzbd-compatible download client for Sonarr. Optional built-in WireGuard VPN for use outside the UK.</Description>
-  <Config Name="WebUI Port" Target="8191" Default="8191" Mode="tcp" Description="Port for the iplayer-arr web interface and Newznab/SABnzbd APIs." Type="Port" Display="always" Required="true" Mask="false">8191</Config>
+  <Config Name="WebUI Port" Target="62001" Default="62001" Mode="tcp" Description="Port for the iplayer-arr web interface and Newznab/SABnzbd APIs." Type="Port" Display="always" Required="true" Mask="false">62001</Config>
   <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/iplayer-arr" Mode="rw" Description="Config files, database, override files and logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/iplayer-arr</Config>
   <Config Name="Downloads" Target="/downloads" Default="/mnt/user/downloads/iplayer" Mode="rw" Description="Where finished BBC content is written. Point Sonarr's import path at the same location." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/downloads/iplayer</Config>
   <Config Name="Timezone" Target="TZ" Default="Europe/London" Description="Container timezone." Type="Variable" Display="always" Required="true" Mask="false">Europe/London</Config>
@@ -36,6 +39,7 @@
   <Config Name="VPN: PIA password" Target="VPN_PIA_PASS" Default="" Description="Private Internet Access password. Only used when VPN_PROVIDER=pia." Type="Variable" Display="advanced" Required="false" Mask="true"/>
   <Config Name="VPN: PIA preferred region" Target="VPN_PIA_PREFERRED_REGION" Default="uk_london" Description="PIA region ID. Must be a UK region for BBC iPlayer (e.g. uk_london, uk_manchester, uk_southampton)." Type="Variable" Display="advanced" Required="false" Mask="false">uk_london</Config>
   <Config Name="VPN: Healthcheck" Target="VPN_HEALTHCHECK_ENABLED" Default="false|true" Description="Stop the container if the VPN tunnel drops. Recommended when running behind a VPN." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="VPN: Nameservers" Target="VPN_NAMESERVERS" Default="" Description="Optional comma-separated DNS resolvers to use inside the VPN tunnel (e.g. 1.1.1.1). Set this if the dashboard geo-check reports DNS failures while the VPN is up." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="PUID" Target="PUID" Default="99" Description="User ID for the running container. Unraid default is 99." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
   <Config Name="PGID" Target="PGID" Default="100" Description="Group ID for the running container. Unraid default is 100." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
   <Config Name="UMASK" Target="UMASK" Default="002" Description="File creation mask for files written by the container." Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
